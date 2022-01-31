@@ -1,6 +1,30 @@
 # Docker Nginx CORS
 
-A docker container running a Nginx reverse proxy to solve CORS problems on local development.
+A `docker-compose` orchestration running a Nginx reverse proxy to solve CORS problems on local development.
+
+Serve by running:
+
+```sh
+$ docker-compose up -d
+```
+
+### Deployment
+
+The reverse proxy currently co-lives on the `general-purpose` server, a t2-medium instance available at `ssh://54.75.76.246`
+
+Changes are deployed to the server by permissioned users through a regular git push, which automatically rebuilds the service. Add the remote like so:
+
+```sh
+$ git remote add deploy ubuntu@54.75.76.246:/home/ubuntu/docker-nginx-cors.git
+```
+
+Once happy with your changes (and hopefully not every 60 seconds), push directly to the server. Stdout should show you the service rebuilding:
+
+```sh
+$ git push deploy main
+```
+
+---
 
 ## Problem
 
